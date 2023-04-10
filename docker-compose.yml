@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    container_name: parking-api-db-1
+    environment:
+      MYSQL_DATABASE: parking
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  app:
+    container_name: parking-api-app-1
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_HOST=db
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=parking
+    restart: always
