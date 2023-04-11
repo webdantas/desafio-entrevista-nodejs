@@ -1,10 +1,14 @@
+// vehicle.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Establishment } from '../establishment/establishment.entity';
 
 @Entity()
 export class Vehicle {
-    constructor(id: number, plate: string, type: string, establishmentId: number) {
+    constructor(id: number, brand: string, model: string, color: string, plate: string, type: string, establishmentId: number) {
       this.id = id;
+      this.brand = brand;
+      this.model = model;
+      this.color = color;
       this.plate = plate;
       this.type = type;
       this.establishmentId = establishmentId;
@@ -13,6 +17,15 @@ export class Vehicle {
 
     @PrimaryGeneratedColumn()
     id!: number;
+
+    @Column()
+    brand!: string;
+
+    @Column()
+    model!: string;
+
+    @Column()
+    color!: string;
 
     @Column()
     plate!: string;
@@ -28,7 +41,4 @@ export class Vehicle {
     })
     @JoinColumn({ name: 'establishmentId' })
     establishment!: Establishment | null;
-  }
-
-
-export default Vehicle;
+}

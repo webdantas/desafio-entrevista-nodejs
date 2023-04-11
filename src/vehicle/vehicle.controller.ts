@@ -2,6 +2,8 @@ import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe, NotFound
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Vehicle } from './vehicle.entity';
 import { VehicleService } from './vehicle.service';
+import { CreateVehicleDto } from './dto/create-vehicle.dto';
+import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 
 @ApiTags('vehicle')
 @Controller('vehicle')
@@ -31,16 +33,16 @@ export class VehicleController {
   @ApiOperation({ summary: 'Create a vehicle' })
   @ApiResponse({ status: 201, description: 'The vehicle has been successfully created.'})
   @Post()
-  async create(@Body() vehicle: Vehicle): Promise<Vehicle> {
-    return this.vehicleService.create(vehicle);
+  async create(@Body() createVehicleDto: CreateVehicleDto): Promise<Vehicle> {
+    return this.vehicleService.create(createVehicleDto);
   }
 
   @ApiOperation({ summary: 'Update a vehicle' })
   @ApiResponse({ status: 200, description: 'The vehicle has been successfully updated.'})
   @ApiResponse({ status: 404, description: 'Vehicle not found.' })
   @Put(':id')
-  async update(@Param('id') id: number, @Body() vehicle: Vehicle): Promise<Vehicle> {
-    return this.vehicleService.update(id, vehicle);
+  async update(@Param('id') id: number, @Body() updateVehicleDto: UpdateVehicleDto): Promise<Vehicle> {
+    return this.vehicleService.update(id, updateVehicleDto);
   }
 
   @ApiOperation({ summary: 'Delete a vehicle' })
