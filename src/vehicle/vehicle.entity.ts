@@ -33,7 +33,7 @@ export class Vehicle {
     @Column()
     type!: string;
 
-    @Column()
+    @Column({ default: 0 }) // definindo o valor padrão como 0
     establishmentId!: number;
 
     @ManyToOne(() => Establishment, (establishment: Establishment) => establishment.vehicles, {

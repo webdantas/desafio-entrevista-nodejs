@@ -20,7 +20,6 @@ export class EstablishmentController {
     return establishment;
   }
 
-
   @Post()
   async create(@Body() establishment: Establishment): Promise<Establishment> {
     return this.establishmentService.create(establishment);
@@ -30,7 +29,7 @@ export class EstablishmentController {
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() establishment: Establishment,
-  ): Promise<Establishment> {
+  ): Promise<Establishment | null> {
     const updatedEstablishment = await this.establishmentService.update(id, establishment);
     if (!updatedEstablishment) {
       throw new NotFoundException('Establishment not found');
