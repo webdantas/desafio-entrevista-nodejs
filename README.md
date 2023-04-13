@@ -71,3 +71,47 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## Modelagem de dados
+
+A modelagem de dados do projeto consiste em duas entidades principais: Vehicle e Establishment.
+
+A entidade Vehicle contém as seguintes informações:
+
+id (chave primária, inteiro): identificador único do veículo;
+type (texto): tipo de veículo, que pode ser "car" ou "motorcycle";
+plate (texto): placa do veículo;
+createdAt (data): data de criação do registro;
+updatedAt (data): data da última atualização do registro.
+A entidade Establishment contém as seguintes informações:
+
+id (chave primária, inteiro): identificador único do estabelecimento;
+name (texto): nome do estabelecimento;
+address (texto): endereço do estabelecimento;
+phone (texto): número de telefone do estabelecimento;
+createdAt (data): data de criação do registro;
+updatedAt (data): data da última atualização do registro.
+Além disso, a entidade Establishment tem uma relação de um-para-muitos com a entidade Vehicle, indicando que um estabelecimento pode ter vários veículos estacionados ao mesmo tempo.
+
+Essa relação é representada pelo atributo establishment na entidade Vehicle, que é uma chave estrangeira para a entidade Establishment.
+
+Dessa forma, a modelagem de dados final fica da seguinte forma:
+
+diff
+Copy code
+Vehicle
+- id (int)
+- type (text)
+- plate (text)
+- createdAt (date)
+- updatedAt (date)
+- establishmentId (int)
+
+Establishment
+- id (int)
+- name (text)
+- address (text)
+- phone (text)
+- createdAt (date)
+- updatedAt (date)
